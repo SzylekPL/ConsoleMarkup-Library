@@ -1,4 +1,4 @@
-﻿namespace ConsoleMarkup;
+﻿namespace ConsoleMarkupLibrary;
 
 public static class ConsoleMarkup
 {
@@ -21,8 +21,8 @@ public static class ConsoleMarkup
 			if (splitText[i] == TagIndicator && i != splitText.Length - 2)
 			{
 				i++;
-				if (Tags.ContainsKey(splitText[i]))
-					Console.ForegroundColor = Tags[splitText[i]];
+				if (Tags.TryGetValue(splitText[i], out ConsoleColor colorValue))
+					Console.ForegroundColor = colorValue;
 				else if (splitText[i] == TagIndicator || splitText[i] == ResetTag)
 					Console.Write(splitText[i]);
 				else
