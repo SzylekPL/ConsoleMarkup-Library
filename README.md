@@ -3,7 +3,7 @@
 ## Content:
 ### - ConsoleMarkup static class that encapsulates all the funtionality;
 ### - AddTag(char tagChar, ConsoleColor tagColor) method to add a new tag;
-### - TagIndicator and ResetTag properties for customizing special characters. Default values are'/' and '#', respectively;
+### - TagIndicator and ResetTag properties for customizing special characters. Default values are'/' and '#', respectively. TagIndicator also acts as a negation character when used before ResetTag or another Tag indicator characters to write them in the standard manner.
 ### - Write and WriteLine methods to write text using color tags.
 ## Usage Example:
 ```cs
