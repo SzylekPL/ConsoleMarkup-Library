@@ -13,22 +13,21 @@ public static class ConsoleMarkup
 			throw new ArgumentException($"Tag character {tagChar} is already assigned.");
 		Tags.Add(tagChar, tagColor);
 	}
-	public static void Write(string value)
+	public static void Write(ReadOnlySpan<char> input)
 	{
-		char[] splitText = value.ToCharArray();
-		for (int i = 0; i < splitText.Length; i++)
+		for (int i = 0; i < input.Length; i++)
 		{
-			if (splitText[i] == TagIndicator && i != splitText.Length - 2)
+			if (input[i] == TagIndicator && i != input.Length - 2)
 			{
 				i++;
 				if (Tags.TryGetValue(splitText[i], out ConsoleColor colorValue))
 					Console.ForegroundColor = colorValue;
-				else if (splitText[i] == TagIndicator || splitText[i] == ResetTag)
+				else if (input[i] == TagIndicator || input[i] == ResetTag)
 					Console.Write(splitText[i]);
 				else
 					throw new InvalidTagException($"The tag {splitText[i]} isn't defined in the Tags dictionary.");
 			}
-			else if (splitText[i] == ResetTag)
+			else if (input[i] == ResetTag)
 				Console.ResetColor();
 			else
 				Console.Write(splitText[i]);
